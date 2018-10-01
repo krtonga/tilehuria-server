@@ -25,4 +25,4 @@ python tilehuriaserver.py
 ```
 
 Additional Resources:
-- [Tutorial on wsgi](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04)
+- [Tutorial on wsgi](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04)
