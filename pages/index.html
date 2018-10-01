@@ -4,9 +4,9 @@
   </head>
   <body>
     <h1>TileHuria Server</h1>
-    <form method="post" target="/endpoint">
+    <form enctype="multipart/form-data" method=post action="/polygon2mbtiles">
     <div>
-      <input id="polygon-geojson" type="file" />
+      <input id="polygon" name="polygon" type="file" />
     </div>
     <div>
       <button type="submit">Submit</button>
