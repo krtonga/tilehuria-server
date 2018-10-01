@@ -1,5 +1,5 @@
-from tilehuriaserver import app
+from tilehuriaserver import application
 
 if __name__ == "__main__":
-	app.run()
+	application.run()
 
