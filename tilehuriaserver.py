@@ -44,7 +44,7 @@ def polygon2mbtiles():
         main(opts)
         tiledir = opts["tiledir"]
         filename = tiledir + ".mbtiles"
-        return send_file(filename, mimetype="image/jpg")
+        return send_file(filename, mimetype="application/vnd.mapbox-vector-tile")
 
 
 if __name__ == "__main__":
