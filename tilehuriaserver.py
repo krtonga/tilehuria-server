@@ -20,8 +20,13 @@ def root():
 @application.route("/polygon2mbtiles", methods=["POST"])
 def polygon2mbtiles():
     polygon_filestorage = request.files["polygon"]  # type: FileStorage
+    name_pieces = polygon_filestorage.filename.split(".")
+    if len(name_pieces) <= 1:
+        return "Could not determine file extension. " + polygon_filestorage.filename
+    else:
+        extension = "." + name_pieces[-1]
 
-    with tempfile.NamedTemporaryFile("w+b") as polygon_tempfile:
+    with tempfile.NamedTemporaryFile("w+b", suffix=extension) as polygon_tempfile:
         polygon_filestorage.save(polygon_tempfile)
         polygon_tempfile.seek(0)
         opts = {
