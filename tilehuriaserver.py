@@ -2,6 +2,8 @@ import tempfile
 
 from flask import Flask, request, send_file
 
+from tilehuria.polygon2mbtiles import main
+
 application = Flask(__name__)
 
 
@@ -22,7 +24,22 @@ def polygon2mbtiles():
     with tempfile.NamedTemporaryFile("w+b") as polygon_tempfile:
         polygon_filestorage.save(polygon_tempfile)
         polygon_tempfile.seek(0)
-        return send_file(polygon_tempfile.name, mimetype="image/jpg")
+        opts = {
+            "infile": polygon_tempfile.name,
+            "minzoom": 16,
+            "maxzoom": 20,
+            "tileserver": "digital_globe_standard",
+            "format": "JPEG",
+            "colorspace": "YCBCR",
+            "type": "baselayer",
+            "description": "A tileset",
+            "attribution": "Copyright of the tile provider",
+            "version": "1.0",
+        }
+        main(opts)
+        tiledir = opts["tiledir"]
+        filename = tiledir + ".mbtiles"
+        return send_file(filename, mimetype="image/jpg")
 
 
 if __name__ == "__main__":
